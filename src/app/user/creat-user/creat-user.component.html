@@ -1,0 +1,173 @@
+<style>
+    
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+</style>
+
+<form autocomplete="off" #createUserModal="ngForm" >
+    <h1 mat-dialog-title>Creat New User</h1>
+    <mat-dialog-content> 
+      <mat-tab-group>
+        <mat-tab [label]="'UserDetails' ">
+          <br />
+          <div class="row-fluid">
+            <div class="col-md-8" >
+ 
+              <mat-form-field>
+                <input
+                required
+                  matInput
+                  name="Name"
+                  [(ngModel)]="user.name"
+                  [placeholder]="'Name' "                
+                  maxlength="32"
+                />                
+              </mat-form-field>   
+
+              <mat-form-field>
+                <input
+                  matInput
+                  name="Cpf"
+                  [(ngModel)]="user.cpf"
+                  [placeholder]="'Cpf'"
+                  (keyup)="keyPressSearch()"
+                  required
+                  maxlength="11"
+                />
+              </mat-form-field>
+              <div *ngIf="!validCpf" style="color:brown;"> Cpf Invádio</div>
+              <mat-form-field>
+                <input matInput
+                [placeholder]="'Date Of Birth' "
+                [(ngModel)]="user.birthDate"
+                type="date"
+                name="DateOfBirth "
+                />
+              </mat-form-field>
+
+              <mat-form-field>
+                <input
+                required
+                  matInput
+                  name="Address"
+                  [(ngModel)]="user.address"
+                  [placeholder]="'Address'"                
+                  maxlength="32"
+                />                
+              </mat-form-field> 
+
+              <mat-form-field>
+                <input
+                required
+                  matInput
+                  name="District"
+                  [(ngModel)]="user.district"
+                  [placeholder]="'District'"                
+                  maxlength="32"
+                />                
+              </mat-form-field> 
+
+              <mat-form-field>
+                <input
+                required
+                  matInput
+                  name="City"
+                  [(ngModel)]="user.city"                
+                  [placeholder]="'City'"                
+                  maxlength="32"
+                />                
+              </mat-form-field> 
+
+              <mat-form-field>
+                <input
+                required
+                  matInput
+                  name="State"
+                  [(ngModel)]="user.state"                
+                  [placeholder]="'State'"                
+                  maxlength="32"
+                />                
+              </mat-form-field> 
+
+              <mat-form-field>
+                <input
+                  matInput
+                  type="number"
+                  name="ZipCode"
+                  [(ngModel)]="user.zipCode"                
+                  [placeholder]="'ZipCode'"
+                  required
+                  maxlength="32"
+                />
+              </mat-form-field>
+
+
+            </div>
+            
+            <div class="col-md-6">
+
+              <mat-form-field>
+                <input
+                  matInput
+                  name="EmailAddress"
+                  [(ngModel)]="user.emailAddress"                
+                  [placeholder]="'Email' "
+                  maxlength="256"
+                  (keyup)="keyPressContat()"
+
+                />
+              </mat-form-field>
+  
+              <mat-form-field >
+                <input 
+                matInput
+                       [placeholder]="'Phone'"
+                       [(ngModel)]="user.phone"                
+                       type="tel"
+                       name="Phone"
+                       reverse="true"
+                       maxlength="14"
+                       (keyup)="keyPressContat()"
+                       />
+            </mat-form-field>
+
+            <mat-form-field>
+                <input
+                  matInput
+                  name="Skype"
+                  [(ngModel)]="user.skype"                
+                  [placeholder]="'Skype'"
+                  maxlength="256"
+                  (keyup)="keyPressContat()"
+
+                />
+              </mat-form-field>
+     
+              <div *ngIf="!validCont" style="color:brown;"> Insira ao menos uma forma de contato</div>
+
+
+                </div>              
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-dialog-content>
+    <div mat-dialog-actions align="end">
+      <button mat-button type="button" [disabled]="saving" (click)="close(false)">
+        Cancel
+      </button>
+      <button
+      mat-flat-button
+      type="submit"
+      flex="15"
+      color="primary"
+      [disabled]="!createUserModal.form.valid || saving"
+      (click)="save()"
+      >
+    Save
+    </button>
+
+    </div>
+  </form>
+  
